@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.input {
+  margin-left: 10px;
+  border: none;
+}
+
+.label {
+  margin-right: 10px;
+}
+
+.input:hover {
+  border: 2px solid rgb(255, 0, 34);
+}

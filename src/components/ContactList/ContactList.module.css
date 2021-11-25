@@ -1,0 +1,23 @@
+.div {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.items {
+  margin-bottom: 10px;
+}
+
+.number {
+  margin-left: 5px;
+
+  color: blue;
+  cursor: pointer;
+}
+
+.button {
+  margin-left: 5px;
+
+  cursor: pointer;
+}
