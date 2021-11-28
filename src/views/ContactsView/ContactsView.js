@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContacts } from '../../Redux/contact-slice';
 import { getContacts } from '../../Redux/contact-selectors';
 import { addContact } from '../../Redux/contact-slice';
 import Filter from '../../components/Filter/Filter';
 import ContactList from '../../components/ContactList/ContactList';
-import style from '../ContactsView/ContactsView.module.css';
+import styles from '../ContactsView/ContactsView.module.css';
 
 function LoginView() {
   const [name, setName] = useState('');
@@ -13,6 +15,9 @@ function LoginView() {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.contacts.loading);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleChangeName = ({ currentTarget: { name, value } }) => {
     switch (name) {
@@ -50,46 +55,47 @@ function LoginView() {
   };
 
   return (
-    <>
-      <h2 className={style.title}>Phone book</h2>
-      <form onSubmit={handleSubmit} className={style.label}>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Phone book</h2>
+      <form onSubmit={handleSubmit} className={styles.label}>
         <label>
           Name
           <input
             type="text"
             name="name"
             value={name}
-            className={style.input}
+            className={styles.input}
             onChange={handleChangeName}
+            placeholder="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Number
           <input
             type="tel"
             name="number"
             value={number}
-            className={style.input}
+            className={styles.input}
             onChange={handleChangeName}
+            placeholder="number"
             pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
             title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
             required
           />
         </label>
-        <div>
-          <button type="submit" className={style.button}>
-            Add contact
-          </button>
-        </div>
+
+        <button type="submit" className={styles.button}>
+          Add contact
+        </button>
       </form>
-      <h2 className={style.title}>Contacts</h2>
+      <h2 className={styles.title}>Contacts</h2>
       <Filter />
-      {isLoading && <h2 className={style.title}>Loading...</h2>}
+      {isLoading && <h2 className={styles.title}>Loading...</h2>}
       <ContactList />
-    </>
+    </div>
   );
 }
 

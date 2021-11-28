@@ -1,9 +1,6 @@
 .container {
-  max-width: 770px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 15px;
-
-  border: 2px solid rgb(0, 26, 255);
-  background-color: aquamarine;
+  padding: 0 15px;
 }

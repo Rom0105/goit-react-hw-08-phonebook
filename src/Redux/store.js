@@ -30,8 +30,8 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    contacts: rootReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    contacts: rootReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

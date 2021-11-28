@@ -1,0 +1,12 @@
+.container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 24px;
+  display: inline;
+  margin-left: 10px;
+}

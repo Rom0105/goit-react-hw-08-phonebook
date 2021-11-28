@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import authOperations from '../../Redux/auth/auth-operations';
+import styles from '../RegisterView/RegisterView.module.css';
 
 function RegisterView() {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -37,50 +39,50 @@ function RegisterView() {
   };
 
   return (
-    <>
-      <h2>Страница регистрации</h2>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Registration page</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label>
-          Имя
-          <input
-            type="tel"
-            name="number"
-            value={name}
-            onChange={handleChange}
-            pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-            title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
-            required
-          />
-        </label>
-        <label>
-          Почта
+          Name
           <input
             type="text"
             name="name"
+            value={name}
+            onChange={handleChange}
+            className={styles.input}
+            placeholder="name"
+          />
+        </label>
+        <label className={styles.label}>
+          Email
+          <input
+            type="email"
+            name="email"
             value={email}
             onChange={handleChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
+            className={styles.input}
+            placeholder="email"
           />
         </label>
-        <label>
-          Пароль
+        <label className={styles.label}>
+          Password
           <input
-            type="tel"
-            name="number"
+            type="password"
+            name="password"
             value={password}
             onChange={handleChange}
-            pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-            title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
-            required
+            className={styles.input}
+            placeholder="password"
+            pattern="[0-9]{8,}"
+            title="Password should be more than 8 characters"
           />
         </label>
-        <div>
-          <button type="submit">Зарегистрироваться</button>
-        </div>
+
+        <button className={styles.button} type="submit">
+          Sign Up
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 

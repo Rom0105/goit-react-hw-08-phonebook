@@ -18,6 +18,8 @@ const Filter = () => {
         value={filterValue}
         onChange={onChange}
         className={style.input}
+        autoComplete="off"
+        placeholder="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz deCastelmore d'Artagnan и т. п."
         required

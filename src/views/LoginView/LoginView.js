@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import authOperations from '../../Redux/auth/auth-operations';
+import styles from '../LoginView/LoginView.module.css';
 
 function LoginView() {
   const [email, setEmail] = useState('');
@@ -32,38 +34,38 @@ function LoginView() {
   };
 
   return (
-    <>
-      <h2>Страница логина</h2>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Login</h2>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label>
-          Почта
+          Email
           <input
-            type="text"
-            name="name"
+            type="email"
+            name="email"
             value={email}
             onChange={handleChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
+            className={styles.input}
+            placeholder="email"
           />
         </label>
-        <label>
-          Пароль
+        <label className={styles.label}>
+          Password
           <input
-            type="tel"
-            name="number"
+            type="password"
+            name="password"
             value={password}
             onChange={handleChange}
-            pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-            title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
-            required
+            className={styles.input}
+            placeholder="password"
           />
         </label>
-        <div>
-          <button type="submit">Войти</button>
-        </div>
+
+        <button className={styles.button} type="submit">
+          Login
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 
